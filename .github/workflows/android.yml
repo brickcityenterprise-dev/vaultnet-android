@@ -1,10 +1,12 @@
 name: Android CI
 on: [push, pull_request]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # Placed globally at the root level
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # Fixes the Node.js deprecation warning
     steps:
     - uses: actions/checkout@v4
     - name: Set up Java
