@@ -2,11 +2,11 @@ name: Android CI
 on: [push, pull_request]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Set up Java
-      uses: actions/setup-java@v4.4.0 # Specifies a patch version that addresses the runtime transition
+      uses: actions/setup-java@v4.4.0
       with:
         distribution: 'temurin'
         java-version: '17'
@@ -15,4 +15,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-      
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: vaultnet-app-debug
+        path: app/build/outputs/apk/debug/app-debug.apk
+        
